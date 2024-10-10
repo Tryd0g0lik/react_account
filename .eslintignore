@@ -5,8 +5,8 @@
 ./src/index.ts
 babel.config.js
 dist/
-src/**/src/index.ts
-
+src/**/src/index.
+**/interfaces.ts
 tailwind.config.js
 **/scripts/index.ts
 */package.json
