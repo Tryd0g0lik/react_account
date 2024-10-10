@@ -1,6 +1,16 @@
 // https://www.typescriptlang.org/tsconfig
 {
   "compilerOptions": {
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "noFallthroughCasesInSwitch": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "allowImportingTsExtensions": true,
     "jsx": "react-jsx",
     "noImplicitAny": true,
     "module": "ES6",
