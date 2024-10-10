@@ -1,2 +1,2 @@
 import "./styles/style.css";
-console.log("Hi word!")
+console.log("Hi word!");

@@ -16,9 +16,6 @@ module.exports = {
     "es2021": true
   },
   "extends": [
-    // "eslint-config-love",
-    // "instead",
-
     "eslint:recommended",
     "plugin:import/recommended",
     "plugin:import/typescript",
@@ -27,7 +24,7 @@ module.exports = {
     "plugin:@typescript-eslint/recommended-type-checked", // https://typescript-eslint.io/linting/configs#recommended-type-checked
     "plugin:@typescript-eslint/strict", // https://typescript-eslint.io/linting/configs#strict
     "plugin:@typescript-eslint/strict-type-checked", // https://typescript-eslint.io/linting/configs/#strict-type-checked
-    "prettier",
+    // "prettier",
   ],
   "plugins": [
     "react",
