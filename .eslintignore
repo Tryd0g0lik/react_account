@@ -1,0 +1,12 @@
+./webpack.config.js
+./postcss.config.js
+*/*eslintrc.js
+*/**/tsconfig.json
+./src/index.ts
+babel.config.js
+dist/
+src/**/src/index.ts
+
+tailwind.config.js
+**/scripts/index.ts
+*/package.json
