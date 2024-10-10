@@ -1,3 +1,6 @@
+/**
+ * Here is a path's router.
+ */
 import React from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { GetFormRegistrationsFC } from './forms/Registrations.tsx';

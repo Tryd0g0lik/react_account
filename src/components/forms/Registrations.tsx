@@ -1,3 +1,6 @@
+/**
+ * Here is a form for registration
+ */
 import React from 'react';
 
 export function GetFormRegistrationsFC(): React.JSX.Element {
