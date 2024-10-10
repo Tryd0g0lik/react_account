@@ -48,6 +48,7 @@ module.exports = {
       'ignorePackages',
       {
         "ts": "never",
+
       }
     ],
     "no-shadow": "off",

@@ -25,7 +25,7 @@
   },
   "scripts": {
     "lint": "eslint . --ext jsx,ts,tsx",
-    "cssstyle": "npx tailwindcss -i ./src/frontend/src/account/styles/style.css -o ./src/frontend/src/account/output.css --watch",
+    "cssstyle": "npx tailwindcss -i ./src/styles/style.css -o ./src/styles/output.css --watch",
     "build:front": "webpack --mode=development --config webpack.config.js",
     "build:back": "npm --workspace=backend run build:dev",
     "watchs": "webpack --watch --mode=development --config ./webpack.config.js",

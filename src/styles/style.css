@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.regist {
+  width: 120px;
+}
+
+.regist label {
+  display: inline-block;
+  position: relative;
+  padding-left: 17px;
+  height: 100%;
+  min-height: 20px;
+  max-height: 20px;
+  margin-bottom: 15px;
+}
+
+label svg {
+  position: absolute;
+  left: 0;
+  width: 15px;
+  bottom: calc(100% + 75%);
+}

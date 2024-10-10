@@ -1,2 +1,2 @@
-import "./styles/style.css";
-console.log("Hi word!");
+import './components/App.tsx';
+import "./styles/output.css";

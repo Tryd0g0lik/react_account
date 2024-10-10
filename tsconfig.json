@@ -10,7 +10,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "allowImportingTsExtensions": true,
+    // "allowImportingTsExtensions": false,
     "jsx": "react-jsx",
     "noImplicitAny": true,
     "module": "ES6",
@@ -36,7 +36,6 @@
     // "noImplicitAny": true,
     // "strictPropertyInitialization": false,
     // "skipLibCheck": true,
-    // "allowImportingTsExtensions": true,
     "moduleResolution": "node",
     "baseUrl": ".",
     "paths": {
