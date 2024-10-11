@@ -46,3 +46,30 @@ label svg {
   width: 15px;
   bottom: calc(100% - 97%);
 }
+
+/* PRESS */
+.press-content {
+
+  position: relative;
+  max-width: 800px;
+  padding-bottom: 50px;
+}
+
+.press-content>a {
+  display: block;
+}
+
+.press-content>a>div {
+  display: inline-block;
+  vertical-align: text-top;
+}
+
+.press-content>a>div.press-more {
+  display: block;
+}
+
+.press-content>a>div.press-more button {
+  position: absolute;
+  bottom: 10px;
+  right: 0;
+}

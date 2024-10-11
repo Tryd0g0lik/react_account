@@ -4,8 +4,9 @@
 import React from 'react';
 import { add, get } from '@Services/fetches';
 // import { ObjectFlags } from 'typescript';
-import { ResponceOuthorisation } from '@Interfaces';
+import { Press, ResponceOuthorisation } from '@Interfaces';
 import { checkCookieExists, setSessionIdInCookie } from '@Services/coockieSessionId';
+
 
 async function handlerFormLoginIn(event: React.KeyboardEvent): Promise<void> {
   if ((event.key) && !(((event.key).toLowerCase()).includes('enter'))) {
@@ -27,7 +28,7 @@ async function handlerFormLoginIn(event: React.KeyboardEvent): Promise<void> {
     "password": inputPasswordStr,
   });
 
-  const responce = await add(bodyStr);
+  let responce = await add(bodyStr);
   if ((typeof responce).includes('boolean')) {
     return;
   }
@@ -44,6 +45,8 @@ async function handlerFormLoginIn(event: React.KeyboardEvent): Promise<void> {
     "access": access,
     "refresh": refresh
   };
+
+  /* COOKIE CHACKE */
   setSessionIdInCookie(cookieKeys);
   const cookieBoolean = checkCookieExists('refresh');
   if (!cookieBoolean) {
@@ -59,8 +62,60 @@ async function handlerFormLoginIn(event: React.KeyboardEvent): Promise<void> {
   divHTML.className = 'press';
   const buttonHtml = document.createElement('button');
   buttonHtml.className = 'press-button';
+  buttonHtml.innerText = 'Добавить';
   divHTML.innerHTML += buttonHtml.outerHTML;
   rootHtml.insertAdjacentHTML('beforeend', divHTML.outerHTML);
+
+  /* GETING PRESS */
+  responce = await get();
+  if ((typeof responce).includes('boolean')) {
+    return;
+  }
+
+  for (let i = 0; i < (responce as Array<object>).length; i++) {
+    // objArr = Object.keys((responce as Array<object>)[i]);
+    // if (objArr.length < 2) {
+    //   throw new Error("[Error => handlerFormLoginIn]: The keys 'access', 'refresh' not was received");
+    // }
+    const oneObject = (responce as Array<object>)[i] as Press;
+    divHTML.className = 'press-entry';
+    const divPreviewHTML = divHTML.cloneNode() as HTMLDivElement;
+    divPreviewHTML.style.display = 'none';
+    if ((oneObject).image !== null) {
+
+      divPreviewHTML.className = "press-preview";
+      divPreviewHTML.style.backgroundImage = `url(${(oneObject).image as string})`;
+      divPreviewHTML.style.display = "inline-block";
+      divPreviewHTML.style.width = String(150) + 'px';
+      divPreviewHTML.style.minHeight = String(170) + 'px';
+      divPreviewHTML.style.minHeight = String(170) + 'px';
+      divPreviewHTML.style.overflow = 'hidden';
+    }
+    buttonHtml.innerText = "Читать далее";
+    divHTML.innerHTML = `<div>
+      <div class='press-h'>${(oneObject.title as string).trim()}</div>
+      <div class="press-content">
+        <a href="/${(oneObject.slug as string).trim()}/">
+
+          ${divPreviewHTML.outerHTML}
+          <div>
+            ${oneObject.content as string}
+          </div>
+          <div class="press-more">
+            ${buttonHtml.outerHTML}
+          </div>
+        </a>
+      </div>
+    </div>`;
+
+    /* get div.className 'press' */
+    const pressHtml = document.querySelector('.press');
+    if (pressHtml === null) {
+      throw new Error("[Error => handlerFormLoginIn]: What is wrong. Does bot work!");
+    }
+    pressHtml.insertAdjacentHTML('beforeend', divHTML.outerHTML);
+  }
+
 }
 
 export function GoLoginInFC(): React.JSX.Element {
