@@ -73,10 +73,6 @@ async function handlerFormLoginIn(event: React.KeyboardEvent): Promise<void> {
   }
 
   for (let i = 0; i < (responce as Array<object>).length; i++) {
-    // objArr = Object.keys((responce as Array<object>)[i]);
-    // if (objArr.length < 2) {
-    //   throw new Error("[Error => handlerFormLoginIn]: The keys 'access', 'refresh' not was received");
-    // }
     const oneObject = (responce as Array<object>)[i] as Press;
     divHTML.className = 'press-entry';
     const divPreviewHTML = divHTML.cloneNode() as HTMLDivElement;
