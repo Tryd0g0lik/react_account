@@ -3,9 +3,13 @@
  */
 import React from 'react';
 
+function handlerFormLoginIn(event: React.MouseEvent): void {
+  // if ((event.type) && !(event.type).toLowerCase().includes('click')) { }
+}
+
 export function GoLoginInFC(): React.JSX.Element {
   return (
-    <div className='regist'>
+    <div onClick={handlerFormLoginIn} className='regist'>
       <form>
         <label className="input input-bordered flex items-center gap-2">
           <svg

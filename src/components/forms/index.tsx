@@ -11,7 +11,8 @@ function handlerLinkOfTopMenu(state: React.Dispatch<React.SetStateAction<string>
 
     let resultEvent = '';
     if ((event.type) && (
-      !((event.type).toLowerCase()).includes('click')
+      !((event.type).toLowerCase()).includes('click') ||
+      !((event.target as HTMLElement).tagName.toLowerCase()).includes('a')
     )) {
       return;
     }
@@ -45,7 +46,7 @@ export function FormsFC(): React.JSX.Element {
 
   const form = (formname).includes('loginIn') ? <GoLoginInFC /> : (
     (formname).includes('changePass') ? <ChangePasswordFC /> : (
-      (formname).includes('registration') ? <GetFormRegistrationsFC /> : <GoLoginInFC />
+      (formname).includes('registration') ? <GetFormRegistrationsFC /> : null
     )
   );
   return (<>
