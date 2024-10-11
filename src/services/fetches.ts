@@ -16,7 +16,7 @@ env_ = undefined;
 
 const params: FetchParams = {
   method: FetchMethod.POST,
-  mode: 'cors' as const,
+  mode: 'cors',
 };
 
 
@@ -34,7 +34,7 @@ export async function add(body_: string,
   pathnameStr = '/api/v1/registration/'
 ): Promise<object | boolean | string> {
   params['headers'] = {
-    'X-CSRFToken': getCookie('csrftoken') as string,
+    // 'X-CSRFToken': getCookie('csrftoken') as string,
     'Content-Type': 'application/json'
   };
   params['body'] = body_;

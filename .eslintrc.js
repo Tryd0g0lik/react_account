@@ -39,6 +39,7 @@ module.exports = {
     '@stylistic/ts'
   ],
   "rules": {
+    "@typescript-eslint/no-misused-promises": "error",
     "import/no-unresolved": [2, { "ignore": ['^@'] }],
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",

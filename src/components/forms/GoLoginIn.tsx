@@ -2,14 +2,49 @@
  * Here is a form of authorization
  */
 import React from 'react';
+import { add } from '@Services/fetches';
 
-function handlerFormLoginIn(event: React.MouseEvent): void {
-  // if ((event.type) && !(event.type).toLowerCase().includes('click')) { }
+async function handlerFormLoginIn(event: React.KeyboardEvent): Promise<void> {
+  if (((event.type)
+    && (
+      !(event.type).toLowerCase().includes('keydown') ||
+      (event.type).toLowerCase().includes('click')
+    ))
+    && (
+      (event.type) && ((event).type).toLowerCase().includes('keydown') &&
+      (((event.target as HTMLElement).getAttribute('name') === null) ||
+        (((event.target as HTMLElement).getAttribute('name') !== null) &&
+          (
+            !((event.target as HTMLElement).getAttribute('name') as string).includes('password') ||
+            !((event.target as HTMLElement).getAttribute('name') as string).includes('username')
+          )))
+    )) {
+    return;
+  }
+  event.preventDefault();
+  const divHTML = (event.currentTarget as HTMLDivElement);
+  const htmlInputLogin = (divHTML.querySelector('form input[type="text"]') as HTMLInputElement);
+  const htmlInputPassword = (divHTML.querySelector('form input[type="password"]') as HTMLInputElement);
+  const inputLoginStr = htmlInputLogin.value !== undefined ? htmlInputLogin.value : '';
+  const inputPasswordStr = htmlInputPassword.value !== undefined ? htmlInputPassword.value : '';
+  if ((inputPasswordStr.length < 5) || (inputLoginStr.length < 5)) {
+    return;
+  }
+  const bodyStr = JSON.stringify({
+    "username": inputLoginStr,
+    "password": inputPasswordStr,
+  });
+
+  const responce = await add(bodyStr)
+
+  console.log(`Responce: ${JSON.stringify(responce as typeof JSON)}`);
+
+
 }
 
 export function GoLoginInFC(): React.JSX.Element {
   return (
-    <div onClick={handlerFormLoginIn} className='regist'>
+    <div onKeyDown={handlerFormLoginIn} className='regist'>
       <form>
         <label className="input input-bordered flex items-center gap-2">
           <svg
@@ -20,7 +55,7 @@ export function GoLoginInFC(): React.JSX.Element {
             <path
               d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM12.735 14c.618 0 1.093-.561.872-1.139a6.002 6.002 0 0 0-11.215 0c-.22.578.254 1.139.872 1.139h9.47Z" />
           </svg>
-          <input type="text" className="grow" placeholder="Username" />
+          <input type="text" className="grow" name="username" placeholder="Username" />
         </label>
         <label className="input input-bordered flex items-center gap-2">
           <svg
