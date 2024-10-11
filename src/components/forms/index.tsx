@@ -1,0 +1,57 @@
+/* This is a code for the main page. This page has a three forms*/
+import React, { useState } from 'react';
+import { ChangePasswordFC } from './ChangePassword.tsx';
+import { GoLoginInFC } from './GoLoginIn.tsx';
+import { GetFormRegistrationsFC } from './Registrations.tsx';
+import { GetTopMenu } from '@Components/Header/index.tsx';
+
+function handlerLinkOfTopMenu(state: React.Dispatch<React.SetStateAction<string>>) {
+
+  return (event: React.MouseEvent): void => {
+
+    let resultEvent = '';
+    if ((event.type) && (
+      !((event.type).toLowerCase()).includes('click')
+    )) {
+      return;
+    }
+    event.preventDefault();
+
+    const target = (event.target) as HTMLAnchorElement;
+    if ((target.outerText).includes('Login in')) {
+      resultEvent += 'loginIn';
+    } else if ((target.outerText).includes('Sign up')) {
+      resultEvent += 'registration';
+    } else if ((target.outerText).includes('Change Password')) {
+      resultEvent += 'changePass';
+    } else {
+      return;
+    }
+
+    state(resultEvent);
+    return;
+  };
+}
+
+/**
+ *
+ * This is a code for the main page. On this page here is
+ *  a three forms. Default form  - 'Login in' and plus
+ *  'Sign up' , 'Change Password'.
+ * @returns
+ */
+export function FormsFC(): React.JSX.Element {
+  const [formname, setFormname] = useState('loginIn');
+
+  const form = (formname).includes('loginIn') ? <GoLoginInFC /> : (
+    (formname).includes('changePass') ? <ChangePasswordFC /> : (
+      (formname).includes('registration') ? <GetFormRegistrationsFC /> : <GoLoginInFC />
+    )
+  );
+  return (<>
+    <div onClick={handlerLinkOfTopMenu(setFormname)}>
+      <GetTopMenu />
+      {form}
+    </div>
+  </>);
+}

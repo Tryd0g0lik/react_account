@@ -1,6 +1,6 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import { PagesRouter } from './Router.tsx';
+import { FormsFC } from './Forms/index.tsx';
 const root = document.getElementById("root");
 
 if (!root) {
@@ -8,6 +8,7 @@ if (!root) {
 }
 createRoot(root).render(
   <React.StrictMode>
-    <PagesRouter />
+
+    <FormsFC />
   </React.StrictMode>
 );

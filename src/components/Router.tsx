@@ -3,7 +3,7 @@
  */
 import React from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { GetFormRegistrationsFC } from './forms/Registrations.tsx';
+import { GetFormRegistrationsFC } from './Forms/Registrations.tsx';
 
 
 const router_ = createBrowserRouter([

@@ -2,8 +2,32 @@
 @tailwind components;
 @tailwind utilities;
 
+/* HEADER */
+header {
+  display: block;
+  margin-bottom: 10px;
+}
+
+nav {
+  display: flex;
+  flex-wrap: nowrap;
+  align-content: center;
+  gap: 0 20px;
+}
+
+.topmenu {
+  display: inline-block;
+}
+
+.topmenu a {
+  display: inline-block;
+  padding: 5px 0;
+  text-align: center;
+}
+
+/* FORMS */
 .regist {
-  width: 120px;
+  width: 210px;
 }
 
 .regist label {
@@ -20,5 +44,5 @@ label svg {
   position: absolute;
   left: 0;
   width: 15px;
-  bottom: calc(100% + 75%);
+  bottom: calc(100% - 97%);
 }

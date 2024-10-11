@@ -144,7 +144,7 @@ module.exports = {
 
     alias: {
       "@Interfaces": [
-        path.resolve(__dirname, "./src/interfaces.ts")
+        path.resolve(__dirname, "src/interfaces.ts")
       ],
       "@Components": [
         path.resolve(__dirname, "./src/components")

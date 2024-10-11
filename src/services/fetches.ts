@@ -1,6 +1,8 @@
 // import getCookie from './cookies';
-import { getCookie } from '../services/coockieSessionId';
-import { FetchParams, FetchMethod } from "../interfaces";
+// import { getCookie } from '../services/coockieSessionId';
+import { getCookie } from '@Services/coockieSessionId';
+// import { FetchParams, FetchMethod } from "../interfaces";
+import { FetchParams, FetchMethod } from "@Interfaces";
 // import { ResultType } from '@Interfaces';
 
 let env_ = process.env.REACT_APP_POSTGRES_HOST;
@@ -16,6 +18,8 @@ const params: FetchParams = {
   method: FetchMethod.POST,
   mode: 'cors' as const,
 };
+
+
 
 /**
  *
@@ -36,7 +40,8 @@ export async function add(body_: string,
   params['body'] = body_;
   const paramsCopy = {};
   Object.assign(paramsCopy, params);
-  const urlStr = `${PROTOCOL}://${HOST}:${PORT}`;
+  const urlStr = PORT.length > 1 ? `${PROTOCOL}://${HOST}:${PORT}` : `${PROTOCOL}://${HOST}`;
+
   const url = urlStr + pathnameStr;
   const answer = await fetch(url, paramsCopy);
   if (answer.ok) {
