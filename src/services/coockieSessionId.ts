@@ -1,26 +1,33 @@
 import { v4 as uuidv4 } from 'uuid';
-import { CookieOptions } from '../interfaces';
+import { CookieKeys, CookieOptions } from '../interfaces';
 const env = process.env.REACT_APP_POSTGRES_HOST;
 const REACT_APP_POSTGRES_HOST = (env) ? env : "localhost";
 /**
  *
  * @param sessionId that is install the key 'sessionId'
  */
-export function setSessionIdInCookie(sessionId: string): void {
-  const cookieName = 'sessionId';
-  const cookieValue = sessionId;
-  const maxAge = 60 * 60 * 24; // Время жизни cookie в секундах (например, 1 день)
+export function setSessionIdInCookie(cookieKeys: CookieKeys): void {
+  if (!(typeof cookieKeys).includes('object')) {
+    return;
+  }
+  const keysArr = Object.keys(cookieKeys);
+  for (let i = 0; i < keysArr.length; i++) {
+    const cookieName: keyof CookieKeys = keysArr[i];
+    const cookieValue: string = cookieKeys[cookieName];
+    const maxAge = 60 * 60 * 24; // Время жизни cookie в секундах (например, 1 день)
 
-  const strict = 'Strict';
-  const now = new Date();
-  const options = {
-    expires: String(maxAge - now.getTime()),
-    path: '/',
-    domain: REACT_APP_POSTGRES_HOST,
-    secure: false,
-    sameSite: 'Strict' as typeof strict
-  };
-  setCookie(cookieName, cookieValue, options);
+    const strict = 'Strict';
+    const now = new Date();
+    const options = {
+      expires: String(maxAge - now.getTime()),
+      path: '/',
+      domain: REACT_APP_POSTGRES_HOST,
+      secure: false,
+      sameSite: 'Strict' as typeof strict
+    };
+    setCookie(cookieName, cookieValue, options);
+  }
+
 
 }
 
@@ -59,9 +66,9 @@ export function createSessionId(): string {
    Смотрим класс 'active' и удаляем его.
  * @returns
  */
-export async function checkerCookieKey(): Promise<boolean> {
-
-  const trueFalse = await checkCookieExists('sessionId');
+export async function checkerCookieKey(cookieName: string): Promise<boolean> {
+  // ????????????????active??????????????????????????????????????????
+  const trueFalse = await checkCookieExists(cookieName);
   const root = document.getElementById('root');
   if (root === null) {
     return false;

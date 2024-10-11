@@ -31,7 +31,7 @@ const params: FetchParams = {
  * @returns JSON of boolesn
  */
 export async function add(body_: string,
-  pathnameStr = '/api/v1/registration/'
+  pathnameStr = '/api/v1/token/'
 ): Promise<object | boolean | string> {
   params['headers'] = {
     // 'X-CSRFToken': getCookie('csrftoken') as string,
@@ -100,11 +100,11 @@ export async function remove(pathnameStr = `/api/v1/clients/add`
   return false;
 }
 
-export async function get(body_: string,
-  pathnameStr = '/api/v1/clients/add/'
+export async function get(
+  pathnameStr = '/api/v1/articles/'
 ): Promise<object | boolean | string> {
 
-  const urlStr = `${PROTOCOL}://${HOST}:${PORT}`;
+  const urlStr = PORT.length > 1 ? `${PROTOCOL}://${HOST}:${PORT}` : `${PROTOCOL}://${HOST}`;
   const url = urlStr + pathnameStr;
   const answer = await fetch(url, {
     method: 'GET',

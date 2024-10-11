@@ -75,6 +75,12 @@ export interface FetchParams {
 //   profiles: OneLine[]
 // }
 
+export interface CookieKeys {
+  access: string
+  refresh: string
+  [key: string]: string;
+}
+
 export interface CookieOptions {
   expires?: Date | string
   path?: string
@@ -85,4 +91,9 @@ export interface CookieOptions {
 export interface Res {
   massege: string
   sessionId?: string;
+}
+
+export interface ResponceOuthorisation {
+  access: string
+  refresh: string
 }

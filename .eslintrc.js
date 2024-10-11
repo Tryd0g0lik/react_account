@@ -39,7 +39,9 @@ module.exports = {
     '@stylistic/ts'
   ],
   "rules": {
-    "@typescript-eslint/no-misused-promises": "error",
+    "@typescript-eslint/no-misused-promises": "off",
+    "@typescript-eslint/no-unsafe-member-access": "off",
+    "@typescript-eslint/no-unsafe-argument": "off",
     "import/no-unresolved": [2, { "ignore": ['^@'] }],
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",

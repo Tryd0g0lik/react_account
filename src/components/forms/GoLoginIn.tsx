@@ -2,44 +2,65 @@
  * Here is a form of authorization
  */
 import React from 'react';
-import { add } from '@Services/fetches';
+import { add, get } from '@Services/fetches';
+// import { ObjectFlags } from 'typescript';
+import { ResponceOuthorisation } from '@Interfaces';
+import { checkCookieExists, setSessionIdInCookie } from '@Services/coockieSessionId';
 
 async function handlerFormLoginIn(event: React.KeyboardEvent): Promise<void> {
-  if (((event.type)
-    && (
-      !(event.type).toLowerCase().includes('keydown') ||
-      (event.type).toLowerCase().includes('click')
-    ))
-    && (
-      (event.type) && ((event).type).toLowerCase().includes('keydown') &&
-      (((event.target as HTMLElement).getAttribute('name') === null) ||
-        (((event.target as HTMLElement).getAttribute('name') !== null) &&
-          (
-            !((event.target as HTMLElement).getAttribute('name') as string).includes('password') ||
-            !((event.target as HTMLElement).getAttribute('name') as string).includes('username')
-          )))
-    )) {
+  if ((event.key) && !(((event.key).toLowerCase()).includes('enter'))) {
     return;
   }
   event.preventDefault();
-  const divHTML = (event.currentTarget as HTMLDivElement);
+  let divHTML = (event.currentTarget as HTMLDivElement);
   const htmlInputLogin = (divHTML.querySelector('form input[type="text"]') as HTMLInputElement);
   const htmlInputPassword = (divHTML.querySelector('form input[type="password"]') as HTMLInputElement);
   const inputLoginStr = htmlInputLogin.value !== undefined ? htmlInputLogin.value : '';
   const inputPasswordStr = htmlInputPassword.value !== undefined ? htmlInputPassword.value : '';
-  if ((inputPasswordStr.length < 5) || (inputLoginStr.length < 5)) {
+  if ((inputPasswordStr.length < 3) || (inputLoginStr.length < 5)) {
     return;
   }
+
+  /* SEND TO SERVER */
   const bodyStr = JSON.stringify({
     "username": inputLoginStr,
     "password": inputPasswordStr,
   });
 
-  const responce = await add(bodyStr)
+  const responce = await add(bodyStr);
+  if ((typeof responce).includes('boolean')) {
+    return;
+  }
 
+  const objArr = Object.keys(responce);
+  if (objArr.length < 2) {
+    throw new Error("[Error => handlerFormLoginIn]: The keys 'access', 'refresh' not was received");
+  }
+  const access = (responce as ResponceOuthorisation)['access'];
+  const refresh = (responce as ResponceOuthorisation)['refresh'];
+  /* COOKIE SAVE */
   console.log(`Responce: ${JSON.stringify(responce as typeof JSON)}`);
+  const cookieKeys = {
+    "access": access,
+    "refresh": refresh
+  };
+  setSessionIdInCookie(cookieKeys);
+  const cookieBoolean = checkCookieExists('refresh');
+  if (!cookieBoolean) {
+    throw new Error('[Error => handlerFormLoginIn]: What is wrong. Does bot work! ');
+  }
 
-
+  /* CHANGE THE DOM */
+  const rootHtml = document.getElementById('root');
+  if (rootHtml === null) {
+    throw new Error('[Error => handlerFormLoginIn]: "root" not found!');
+  }
+  divHTML = document.createElement('div');
+  divHTML.className = 'press';
+  const buttonHtml = document.createElement('button');
+  buttonHtml.className = 'press-button';
+  divHTML.innerHTML += buttonHtml.outerHTML;
+  rootHtml.insertAdjacentHTML('beforeend', divHTML.outerHTML);
 }
 
 export function GoLoginInFC(): React.JSX.Element {
