@@ -1,11 +1,23 @@
 /**
  * Here is a form of authorization
  */
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { GetTopMenu } from '@Components/Header';
+import { CheckPathnameOfUrl } from '@Services/pathname';
 
 export function ChangePasswordFC(): React.JSX.Element {
-  return (
-    <div className='regist'>
+  const [headerState, setHeaderState] = useState<React.JSX.Element>(<><div></div></>);
+  // state: React.Dispatch<React.SetStateAction<boolean>>
+
+  useEffect(() => {
+    const menu: React.JSX.Element = CheckPathnameOfUrl() ? <GetTopMenu /> : <><div></div></> as React.JSX.Element;
+    setHeaderState(menu);
+  }, [headerState]);
+
+  return (<>
+    {headerState}
+    < div className='regist password-change' >
+
       <form>
         <label className="input input-bordered flex items-center gap-2">
           <svg
@@ -31,7 +43,7 @@ export function ChangePasswordFC(): React.JSX.Element {
               d="M14 6a4 4 0 0 1-4.899 3.899l-1.955 1.955a.5.5 0 0 1-.353.146H5v1.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-2.293a.5.5 0 0 1 .146-.353l3.955-3.955A4 4 0 1 1 14 6Zm-4-2a.75.75 0 0 0 0 1.5.5.5 0 0 1 .5.5.75.75 0 0 0 1.5 0 2 2 0 0 0-2-2Z"
               clipRule="evenodd" />
           </svg>
-          <input type="password" className="grow" name="password3" placeholder="Your password" />
+          <input type="password" className="grow" name="password2" placeholder="Your password" />
         </label>
         <label className="input input-bordered flex items-center gap-2">
           <svg
@@ -47,5 +59,6 @@ export function ChangePasswordFC(): React.JSX.Element {
           <input type="password" className="grow" name="password3" placeholder="Your password" />
         </label>
       </form>
-    </div>);
+    </div >
+  </>);
 }

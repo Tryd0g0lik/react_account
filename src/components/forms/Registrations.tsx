@@ -1,10 +1,20 @@
 /**
  * Here is a form for registration
  */
-import React from 'react';
+import { GetTopMenu } from '@Components/Header';
+import { CheckPathnameOfUrl } from '@Services/pathname';
+import React, { useEffect, useState } from 'react';
 
 export function GetFormRegistrationsFC(): React.JSX.Element {
-  return (
+  const [headerState, setHeaderState] = useState<React.JSX.Element>(<><div></div></>);
+  // state: React.Dispatch<React.SetStateAction<boolean>>
+
+  useEffect(() => {
+    const menu: React.JSX.Element = CheckPathnameOfUrl() ? <GetTopMenu /> : <><div></div></> as React.JSX.Element;
+    setHeaderState(menu);
+  }, [headerState]);
+  return (<>
+    {headerState}
     <div className='regist'>
       <form>
         {/* <label className="input input-bordered flex items-center gap-2">
@@ -71,5 +81,6 @@ export function GetFormRegistrationsFC(): React.JSX.Element {
           <input type="password" className="grow" name="password2" placeholder="Repeat your password2" />
         </label>
       </form>
-    </div>);
+    </div>
+  </>);
 }
