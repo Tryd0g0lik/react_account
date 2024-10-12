@@ -6,11 +6,8 @@ import { checkPathnameOfUrl } from '@Services/pathname';
 import { GetTopMenu } from '@Components/Header';
 import { handlerFormLoginIn } from './handlers/forGoLoginIn';
 
-
-
 export function GoLoginInFC(): React.JSX.Element {
   const [headerState, setHeaderState] = useState<React.JSX.Element>(<><div></div></>);
-  // state: React.Dispatch<React.SetStateAction<boolean>>
 
   useEffect(() => {
     const menu: React.JSX.Element = checkPathnameOfUrl() ? <GetTopMenu /> : <><div></div></> as React.JSX.Element;

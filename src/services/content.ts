@@ -88,10 +88,6 @@ async function handlerButtonArticleMore(event: MouseEvent): Promise<void> {
   /* GET BUTTOM 'Читать ещё' */
   const target = event.target as HTMLElement;
   if ((target.tagName.toLowerCase()).includes('a')) {
-    // event.preventDefault();
-
-    const pathnameOfHref: string = (target as HTMLAnchorElement).pathname;
-    // document.location.replace()
     return;
   }
   if (!(target.tagName.toLowerCase()).includes('button')) {

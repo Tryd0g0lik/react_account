@@ -49,52 +49,6 @@ export interface Article {
   "password"?: string
 }
 
-// export interface FieldInnerHtml {
-//   text?: string
-//   dataNamex: string
-//   types?: string
-//   classNames?: string
-// }
-// export interface ResultType {
-//   id: number
-//   firstName: string
-//   lastName: string
-//   name?: string
-//   password: string
-// }
-
-// export interface Inpt {
-//   pathname: string
-//   body: {
-//     typeField: string
-//     newValueofField: string
-//     indexMesseges?: string
-//     indexEmails?: string
-//     titles?: string
-//   }
-//   sessionId?: string
-// }
-
-// export interface OneLine {
-//   firstName: string
-//   titles?: string
-//   id: number
-//   email_id: number
-//   first_name?: string
-// }
-// interface Rows {
-//   rows: OneLine[]
-// }
-
-
-
-// export interface Ads extends Rows {
-//   message: string
-//   positions?: OneLine[]
-//   position?: OneLine
-//   profiles: OneLine[]
-// }
-
 export interface CookieKeys {
   access: string
   refresh: string

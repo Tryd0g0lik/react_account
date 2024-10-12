@@ -4,6 +4,9 @@ import { Article } from '@Interfaces';
 import React from 'react';
 import { useLoaderData } from 'react-router-dom';
 
+/**
+ * Article page - publish.
+ * */
 export function ArticlePageFC(): React.JSX.Element {
   const data: Article = useLoaderData() as Article;
 
@@ -24,7 +27,6 @@ export function ArticlePageFC(): React.JSX.Element {
             <div>
               {data.content}
             </div>
-            {/* ${divPreviewHTML.outerHTML} */}
 
             <div data-author={data.author?.id as number} className="article-autor">
               <div>Автор: {data.author?.username}</div>

@@ -1,9 +1,11 @@
 import React from 'react';
-
+/**
+ * This is a form of comments to publish.
+ * @returns
+ */
 export function GetFormOfComments(): React.JSX.Element {
   return (<div className='comments'>
     <form>
-      {/* xs */}
       <label className="input input-bordered flex items-center gap-2">
         <input type="text" className="grow" name="username" placeholder="Username" />
       </label>
@@ -11,9 +13,6 @@ export function GetFormOfComments(): React.JSX.Element {
 
         <input type="text" className="grow" placeholder="Email" />
       </label>
-
-      {/* lg */}
-
       <textarea
         placeholder="Bio"
         className="textarea textarea-bordered textarea-lg w-full max-w-xs"></textarea>

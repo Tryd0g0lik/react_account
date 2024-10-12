@@ -53,7 +53,7 @@ export async function add(body_: string,
 }
 
 export async function put(body_: string,
-  pathnameStr = '/api/v1/clients/add/'
+  pathnameStr = '/api/v1/'
 ): Promise<object | boolean | string> {
   const paramsCopy = {} as typeof params;
   Object.assign(paramsCopy, params);
@@ -78,7 +78,7 @@ export async function put(body_: string,
   return false;
 }
 
-export async function remove(pathnameStr = `/api/v1/clients/add`
+export async function remove(pathnameStr = `/api/v1/`
 ): Promise<object | boolean | string> {
   const paramsCopy = {} as typeof params;
   paramsCopy['method'] = FetchMethod.DELETE;

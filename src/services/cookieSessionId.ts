@@ -86,7 +86,7 @@ export async function checkerCookieKey(cookieName: string): Promise<boolean> {
 
     }
   } else {
-    // если не видим ключа 'sessionId' - cookie ,
+    // если не видим ключа  ,
     // смотрим класс 'active' и удаляем его.
     if ((root.className).includes('active')) {
       root.className = root.className.replace('active', '');

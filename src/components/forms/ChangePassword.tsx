@@ -1,14 +1,16 @@
 /**
- * Here is a form of authorization
+ * Here is a form  for the password to change
  */
 import React, { useEffect, useState } from 'react';
 import { GetTopMenu } from '@Components/Header';
 import { checkPathnameOfUrl } from '@Services/pathname';
 
-
+/**
+ * Form for a password changing
+ * @returns
+ */
 export function ChangePasswordFC(): React.JSX.Element {
   const [headerState, setHeaderState] = useState<React.JSX.Element>(<><div></div></>);
-  // state: React.Dispatch<React.SetStateAction<boolean>>
   function changeState(state: React.Dispatch<React.SetStateAction<React.JSX.Element>>): void {
     const menu: React.JSX.Element = checkPathnameOfUrl() ? <GetTopMenu /> : <><div></div></> as React.JSX.Element;
     state(menu);
