@@ -29,7 +29,7 @@ export async function GetTotalContent(rootHtml: HTMLElement): Promise<void> {
 
     divHTML.className = 'press-entry';
     // index
-    divHTML.setAttribute('name-index', String(oneObject.id));
+    divHTML.setAttribute('data-index', String(oneObject.id));
     const divPreviewHTML = divHTML.cloneNode() as HTMLDivElement;
     divPreviewHTML.style.display = 'none';
     if ((oneObject).image !== null) {
@@ -43,11 +43,11 @@ export async function GetTotalContent(rootHtml: HTMLElement): Promise<void> {
       divPreviewHTML.style.overflow = 'hidden';
     }
     buttonHtml.innerText = "Читать далее";
-    buttonHtml.setAttribute('name-index', String(oneObject.id));
+    buttonHtml.setAttribute('data-index', String(oneObject.id));
     // title, slug, content
     divHTML.innerHTML = `<div>
       <div class='press-h'>${(oneObject.title as string).trim()}</div>
-      <div class="press-content" name-index="${String(oneObject.id)}">
+      <div class="press-content" data-index="${String(oneObject.id)}">
         <a href="/press/${String(oneObject.id)}/${(oneObject.slug as string).trim()}/">
 
           ${divPreviewHTML.outerHTML}
@@ -98,7 +98,7 @@ async function handlerButtonPressMore(event: MouseEvent): Promise<void> {
     return;
   }
   event.preventDefault();
-  const getAttributeIndex = target.getAttribute('name-index');
+  const getAttributeIndex = target.getAttribute('data-index');
   if (getAttributeIndex === null) {
     return;
   }
@@ -118,7 +118,7 @@ async function handlerButtonPressMore(event: MouseEvent): Promise<void> {
 
 
   /* GET OLD COMTENT of single position */
-  const singleContentHtml = document.querySelector(`.press-content[name-index="${getAttributeIndex}"] > a div:last-of-type`);
+  const singleContentHtml = document.querySelector(`.press-content[data-index="${getAttributeIndex}"] > a div:last-of-type`);
   if (singleContentHtml === null) {
     throw new Error("[Error => handlerButtonPressMore]: What is wrong. Does bot work!");
   }
