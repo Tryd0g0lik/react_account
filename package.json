@@ -31,7 +31,7 @@
     "watchs": "webpack --watch --mode=development --config ./webpack.config.js",
     "server:front": "webpack server --mode=development  --config webpack.config.js",
     "lint:write": "eslint --debug src/ --fix",
-    "pushing": "git push https://github.com/Tryd0g0lik/london.git master",
+    "pushing": "git push https://github.com/Tryd0g0lik/react_account.git master",
     "husk": "npm prepare",
     "prepare": "husky"
   },
