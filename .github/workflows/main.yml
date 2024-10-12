@@ -41,7 +41,6 @@ jobs:
       - name: Build-All
         run: npm run build:front
 
-
       - name: Setup Pages
         uses: actions/configure-pages@v2
 
@@ -51,7 +50,7 @@ jobs:
           path: 'dist'
 
       - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v2
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          folder: dist
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
