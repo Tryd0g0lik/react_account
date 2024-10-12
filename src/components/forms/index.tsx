@@ -1,9 +1,10 @@
 /* This is a code for the main page. This page has a three forms*/
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ChangePasswordFC } from './ChangePassword.tsx';
 import { GoLoginInFC } from './GoLoginIn.tsx';
 import { GetFormRegistrationsFC } from './Registrations.tsx';
 import { GetTopMenu } from '@Components/Header/index.tsx';
+import { GetTotalContent } from '@Services/content.ts';
 
 function handlerLinkOfTopMenu(state: React.Dispatch<React.SetStateAction<string>>) {
 
@@ -34,6 +35,7 @@ function handlerLinkOfTopMenu(state: React.Dispatch<React.SetStateAction<string>
   };
 }
 
+
 /**
  *
  * This is a code for the main page. On this page here is
@@ -43,7 +45,34 @@ function handlerLinkOfTopMenu(state: React.Dispatch<React.SetStateAction<string>
  */
 export function FormsFC(): React.JSX.Element {
   const [formname, setFormname] = useState('loginIn');
+  const [loading, setLoading] = useState(false);
 
+  useEffect(() => {
+
+
+    console.log('Loading content...', loading);
+
+    return () => {
+      void uploadContent();
+    };
+
+  }, []);
+  /**
+  *  change the dom and get content
+  * @returns Promise<void>
+  */
+  async function uploadContent(): Promise<void> {
+
+    const rootHtml = document.getElementById('root');
+    if (rootHtml === null) {
+      throw new Error('[Error => handlerFormLoginIn]: "root" not found!');
+    }
+    if (!loading) {
+      await GetTotalContent(rootHtml);
+    }
+    setLoading(true);
+  }
+  /* ---- endUploadContent ----*/
   const form = (formname).includes('loginIn') ? <GoLoginInFC /> : (
     (formname).includes('changePass') ? <ChangePasswordFC /> : (
       (formname).includes('registration') ? <GetFormRegistrationsFC /> : null

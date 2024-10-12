@@ -1,9 +1,5 @@
-// import getCookie from './cookies';
-// import { getCookie } from '../services/coockieSessionId';
-import { getCookie } from '@Services/coockieSessionId';
-// import { FetchParams, FetchMethod } from "../interfaces";
+import { getCookie } from '@Services/cookieSessionId';
 import { FetchParams, FetchMethod } from "@Interfaces";
-// import { ResultType } from '@Interfaces';
 
 let env_ = process.env.REACT_APP_POSTGRES_HOST;
 const HOST = (env_ === undefined) ? 'localhost' : env_.slice(0);

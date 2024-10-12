@@ -897,7 +897,7 @@ label svg {
   bottom: calc(100% - 97%);
 }
 
-/* PRESS */
+/* CONTENT */
 
 .press-content {
   position: relative;
@@ -918,7 +918,12 @@ label svg {
   display: block;
 }
 
-.press-content>a>div.press-more button {
+.press-content div {
+  max-width: 800px;
+  overflow: hidden;
+}
+
+.press-content>div.press-more button {
   position: absolute;
   bottom: 10px;
   right: 0;
