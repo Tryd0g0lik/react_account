@@ -1,3 +1,4 @@
+import { GetFormOfComments } from '@Components/Comments';
 import { GetTopMenu } from '@Components/Header';
 import { Article } from '@Interfaces';
 import React from 'react';
@@ -36,5 +37,7 @@ export function ArticlePageFC(): React.JSX.Element {
       <p>No article found.</p>
     )
     }
+
+    <GetFormOfComments />
   </>);
 }

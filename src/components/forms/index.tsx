@@ -43,15 +43,12 @@ function handlerLinkOfTopMenu(state: React.Dispatch<React.SetStateAction<string>
  *  'Sign up' , 'Change Password'.
  * @returns
  */
-export function FormsFC(): React.JSX.Element {
+export function GetMainPageFC(): React.JSX.Element {
   const [formname, setFormname] = useState('loginIn');
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-
-
     console.log('Loading content...', loading);
-
     return () => {
       void uploadContent();
     };

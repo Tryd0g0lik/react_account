@@ -6,7 +6,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { GetFormRegistrationsFC } from './Forms/Registrations.tsx';
 import { fetchArticleData } from '@Services/articleData.ts';
 import { ArticlePageFC } from './ArticlePage/index.tsx';
-import { FormsFC } from './Forms/index.tsx';
+import { GetMainPageFC } from './Forms/index.tsx';
 import { ChangePasswordFC } from './Forms/ChangePassword.tsx';
 import { GoLoginInFC } from './Forms/GoLoginIn.tsx';
 
@@ -14,7 +14,7 @@ import { GoLoginInFC } from './Forms/GoLoginIn.tsx';
 const router_ = createBrowserRouter([
   {
     path: '/',
-    element: <FormsFC />
+    element: <GetMainPageFC />
   },
   {
     path: '/loginIn',

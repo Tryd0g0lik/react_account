@@ -1,14 +1,16 @@
 module.exports = {
   content: [
-    "./src/account/**/*.{js,jsx,ts,tsx}",
-    "./src/account/*.{js,jsx,ts,tsx}",
+    "./src/**/*.{js,jsx,ts,tsx}",
+    "./src/*.{js,jsx,ts,tsx}",
     "./public/*.html"
   ],
 
   theme: {
     extend: {},
   },
-  plugins: [require("daisyui")],
+  plugins: [
+    require("daisyui")
+  ],
 
 }
-/* require('daisyui') */
+// require('daisyui')

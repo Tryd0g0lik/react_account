@@ -127,7 +127,7 @@ module.exports = {
     hot: true, // Включение горячей перезагрузки
     liveReload: true, // Включение live-reload
 
-    comarticle: true,
+    // comarticle: true,
     historyApiFallback: true
     // open: true, // Автоматическое открытие браузера
     // port: 8080
@@ -152,20 +152,6 @@ module.exports = {
       "@Services": [
         path.resolve(__dirname, "./src/services")
       ],
-      // "@Interfaces": [
-      //   path.resolve(__dirname, "src/frontend/src/account/interfaces.ts")
-      // ],
-      // "@Components": [
-      //   path.resolve(__dirname, "src/frontend/src/account/components")
-      // ],
-      // "@Services": [
-      //   path.resolve(__dirname, "src/frontend/src/account/services")
-      // ],
-      // "@Logs": [path.resolve(__dirname, "src/backend/src/server/logs/index.ts")],
-      //     // "@Interfaceback": [
-      //     //   path.resolve(__dirname, "src/backend/src/server/interfaces.ts"),
-      //     // ]
-
     }
   },
 

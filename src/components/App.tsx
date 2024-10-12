@@ -1,6 +1,6 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import { FormsFC } from './Forms/index.tsx';
+import { GetMainPageFC } from './Forms/index.tsx';
 import { PagesRouter } from './Router.tsx';
 const root = document.getElementById("root");
 

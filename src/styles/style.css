@@ -68,12 +68,20 @@ label svg {
   display: block;
 }
 .article-content div {
-  max-width: 800px;
   overflow: hidden;
+}
+.comments,
+.article-content {
+  max-width: 800px;
 }
 
 .article-content>div.article-more button {
   position: absolute;
   bottom: 10px;
   right: 0;
+}
+
+/* COMMENTS */
+.comments form label svg {
+  bottom: 0;
 }
