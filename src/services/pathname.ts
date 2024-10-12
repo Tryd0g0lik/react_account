@@ -6,7 +6,7 @@
  * components a 'ChangePasswordFC', 'GoLoginInFC', 'GetFormRegistrationsFC'
  * @returns true/false
  */
-export function CheckPathnameOfUrl(): boolean {
+export function checkPathnameOfUrl(): boolean {
   const pathname = document.location.pathname;
   const bool = (pathname.includes('/change')) ? true : (
     pathname.includes('/signUp') ? true : (

@@ -1,5 +1,5 @@
 import { getCookie } from '@Services/cookieSessionId';
-import { FetchParams, FetchMethod } from "@Interfaces";
+import { FetchParams, FetchMethod, Article } from "@Interfaces";
 
 let env_ = process.env.REACT_APP_POSTGRES_HOST;
 const HOST = (env_ === undefined) ? 'localhost' : env_.slice(0);
@@ -19,10 +19,15 @@ const params: FetchParams = {
 
 /**
  *
- * @param body_ Here is data for db + \
- * sessionId ` {
-    sessionId: cookieId
-  };`.
+ * @param body_ Here is data for db.
+ * For example
+{
+    "email": "tutu@tut.ru",
+    "first_name": "misha33",
+    "last_name": "mishamisha33",
+    "username": "admin33",
+    "password": "1234"
+  }`.
  * @param pathnameStr '/it/is/api/path/'
  * @returns JSON of boolesn
  */

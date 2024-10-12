@@ -42,6 +42,11 @@ export interface Article {
   "created"?: string
   "updated"?: string
   "image"?: string
+  "email"?: string
+  "first_name"?: string
+  "last_name"?: string
+  "username"?: string
+  "password"?: string
 }
 
 // export interface FieldInnerHtml {

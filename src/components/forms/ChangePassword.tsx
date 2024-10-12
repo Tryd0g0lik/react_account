@@ -3,16 +3,19 @@
  */
 import React, { useEffect, useState } from 'react';
 import { GetTopMenu } from '@Components/Header';
-import { CheckPathnameOfUrl } from '@Services/pathname';
+import { checkPathnameOfUrl } from '@Services/pathname';
+
 
 export function ChangePasswordFC(): React.JSX.Element {
   const [headerState, setHeaderState] = useState<React.JSX.Element>(<><div></div></>);
   // state: React.Dispatch<React.SetStateAction<boolean>>
-
+  function changeState(state: React.Dispatch<React.SetStateAction<React.JSX.Element>>): void {
+    const menu: React.JSX.Element = checkPathnameOfUrl() ? <GetTopMenu /> : <><div></div></> as React.JSX.Element;
+    state(menu);
+  }
   useEffect(() => {
-    const menu: React.JSX.Element = CheckPathnameOfUrl() ? <GetTopMenu /> : <><div></div></> as React.JSX.Element;
-    setHeaderState(menu);
-  }, [headerState]);
+    changeState(setHeaderState);
+  }, []);
 
   return (<>
     {headerState}

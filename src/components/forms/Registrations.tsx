@@ -2,7 +2,7 @@
  * Here is a form for registration
  */
 import { GetTopMenu } from '@Components/Header';
-import { CheckPathnameOfUrl } from '@Services/pathname';
+import { checkPathnameOfUrl } from '@Services/pathname';
 import React, { useEffect, useState } from 'react';
 
 export function GetFormRegistrationsFC(): React.JSX.Element {
@@ -10,9 +10,9 @@ export function GetFormRegistrationsFC(): React.JSX.Element {
   // state: React.Dispatch<React.SetStateAction<boolean>>
 
   useEffect(() => {
-    const menu: React.JSX.Element = CheckPathnameOfUrl() ? <GetTopMenu /> : <><div></div></> as React.JSX.Element;
+    const menu: React.JSX.Element = checkPathnameOfUrl() ? <GetTopMenu /> : <><div></div></> as React.JSX.Element;
     setHeaderState(menu);
-  }, [headerState]);
+  }, []);
   return (<>
     {headerState}
     <div className='regist'>
@@ -41,7 +41,7 @@ export function GetFormRegistrationsFC(): React.JSX.Element {
             <path
               d="M15 6.954 8.978 9.86a2.25 2.25 0 0 1-1.956 0L1 6.954V11.5A1.5 1.5 0 0 0 2.5 13h11a1.5 1.5 0 0 0 1.5-1.5V6.954Z" />
           </svg>
-          <input type="text" className="grow" placeholder="Email" />
+          <input type="email" name="email" className="grow" placeholder="Email" />
         </label>
         <label className="input input-bordered flex items-center gap-2">
           <svg
@@ -52,7 +52,29 @@ export function GetFormRegistrationsFC(): React.JSX.Element {
             <path
               d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM12.735 14c.618 0 1.093-.561.872-1.139a6.002 6.002 0 0 0-11.215 0c-.22.578.254 1.139.872 1.139h9.47Z" />
           </svg>
-          <input type="text" className="grow" placeholder="Username" />
+          <input type="text" name="first_name" className="grow" placeholder="First-name" />
+        </label>
+        <label className="input input-bordered flex items-center gap-2">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 16 16"
+            fill="currentColor"
+            className="h-4 w-4 opacity-70">
+            <path
+              d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM12.735 14c.618 0 1.093-.561.872-1.139a6.002 6.002 0 0 0-11.215 0c-.22.578.254 1.139.872 1.139h9.47Z" />
+          </svg>
+          <input type="text" name="last_name" className="grow" placeholder="Last-name" />
+        </label>
+        <label className="input input-bordered flex items-center gap-2">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 16 16"
+            fill="currentColor"
+            className="h-4 w-4 opacity-70">
+            <path
+              d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM12.735 14c.618 0 1.093-.561.872-1.139a6.002 6.002 0 0 0-11.215 0c-.22.578.254 1.139.872 1.139h9.47Z" />
+          </svg>
+          <input type="text" name="username" className="grow" placeholder="Username" />
         </label>
         <label className="input input-bordered flex items-center gap-2">
           <svg

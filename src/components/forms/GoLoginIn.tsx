@@ -2,76 +2,18 @@
  * Here is a form of authorization
  */
 import React, { useEffect, useState } from 'react';
-import { add } from '@Services/fetches';
-import { GetTotalContent } from '@Services/content';
-import { ResponceOuthorisation } from '@Interfaces';
-import { setSessionIdInCookie } from '@Services/cookieSessionId';
-import { CheckPathnameOfUrl } from '@Services/pathname';
+import { checkPathnameOfUrl } from '@Services/pathname';
 import { GetTopMenu } from '@Components/Header';
-
-/**
- * Handler for form a  'Login in'
- * @param event KeyboardEvent
- * @returns Promise<void>
- */
-async function handlerFormLoginIn(event: React.KeyboardEvent): Promise<void> {
-  if ((event.key) && !(((event.key).toLowerCase()).includes('enter'))) {
-    return;
-  }
-  event.preventDefault();
-  const divHTML = (event.currentTarget as HTMLDivElement);
-  const htmlInputLogin = (divHTML.querySelector('form input[type="text"]') as HTMLInputElement);
-  const htmlInputPassword = (divHTML.querySelector('form input[type="password"]') as HTMLInputElement);
-  const inputLoginStr = htmlInputLogin.value !== undefined ? htmlInputLogin.value : '';
-  const inputPasswordStr = htmlInputPassword.value !== undefined ? htmlInputPassword.value : '';
-  if ((inputPasswordStr.length < 3) || (inputLoginStr.length < 5)) {
-    return;
-  }
-
-  /* SEND TO SERVER */
-  const bodyStr = JSON.stringify({
-    "username": inputLoginStr,
-    "password": inputPasswordStr,
-  });
-
-  const responce = await add(bodyStr);
-  if ((typeof responce).includes('boolean')) {
-    return;
-  }
-
-  const objArr = Object.keys(responce);
-  if (objArr.length < 2) {
-    throw new Error("[Error => handlerFormLoginIn]: The keys 'access', 'refresh' not was received");
-  }
-  const access = (responce as ResponceOuthorisation)['access'];
-  const refresh = (responce as ResponceOuthorisation)['refresh'];
-
-  /* COOKIE SAVE */
-  console.log(`Responce: ${JSON.stringify(responce as typeof JSON)}`);
-  const cookieKeys = {
-    "access": access,
-    "refresh": refresh
-  };
-  setSessionIdInCookie(cookieKeys);
+import { handlerFormLoginIn } from './handlers/forGoLoginIn';
 
 
-  /* CHANGE THE DOM  and CONTENT's PUBLISH */
-  const rootHtml = document.getElementById('root');
-  if (rootHtml === null) {
-    throw new Error('[Error => handlerFormLoginIn]: "root" not found!');
-  }
-
-  void GetTotalContent(rootHtml);
-
-
-}
 
 export function GoLoginInFC(): React.JSX.Element {
   const [headerState, setHeaderState] = useState<React.JSX.Element>(<><div></div></>);
   // state: React.Dispatch<React.SetStateAction<boolean>>
 
   useEffect(() => {
-    const menu: React.JSX.Element = CheckPathnameOfUrl() ? <GetTopMenu /> : <><div></div></> as React.JSX.Element;
+    const menu: React.JSX.Element = checkPathnameOfUrl() ? <GetTopMenu /> : <><div></div></> as React.JSX.Element;
     setHeaderState(menu);
   }, [headerState]);
   return (
