@@ -12,7 +12,7 @@ async function handlerFormLoginIn(event: React.KeyboardEvent): Promise<void> {
     return;
   }
   event.preventDefault();
-  let divHTML = (event.currentTarget as HTMLDivElement);
+  const divHTML = (event.currentTarget as HTMLDivElement);
   const htmlInputLogin = (divHTML.querySelector('form input[type="text"]') as HTMLInputElement);
   const htmlInputPassword = (divHTML.querySelector('form input[type="password"]') as HTMLInputElement);
   const inputLoginStr = htmlInputLogin.value !== undefined ? htmlInputLogin.value : '';
@@ -38,6 +38,7 @@ async function handlerFormLoginIn(event: React.KeyboardEvent): Promise<void> {
   }
   const access = (responce as ResponceOuthorisation)['access'];
   const refresh = (responce as ResponceOuthorisation)['refresh'];
+
   /* COOKIE SAVE */
   console.log(`Responce: ${JSON.stringify(responce as typeof JSON)}`);
   const cookieKeys = {
@@ -47,13 +48,13 @@ async function handlerFormLoginIn(event: React.KeyboardEvent): Promise<void> {
   setSessionIdInCookie(cookieKeys);
 
 
-  /* CHANGE THE DOM  and GET CONTENT*/
+  /* CHANGE THE DOM  and CONTENT's PUBLISH */
   const rootHtml = document.getElementById('root');
   if (rootHtml === null) {
     throw new Error('[Error => handlerFormLoginIn]: "root" not found!');
   }
 
-  GetTotalContent(rootHtml);
+  void GetTotalContent(rootHtml);
 
 
 }

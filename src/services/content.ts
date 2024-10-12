@@ -8,7 +8,7 @@ export async function GetTotalContent(rootHtml: HTMLElement): Promise<void> {
 
   const cookieBoolean = checkCookieExists('refresh');
   if (!cookieBoolean) {
-    throw new Error('[Error => handlerFormLoginIn]: What is wrong. Does bot work! ');
+    throw new Error('[Error => handlerFormLoginIn]: Cookie was not finded!');
   }
   /* GETING CONTENT */
   const responce = await get();
@@ -48,7 +48,7 @@ export async function GetTotalContent(rootHtml: HTMLElement): Promise<void> {
     divHTML.innerHTML = `<div>
       <div class='press-h'>${(oneObject.title as string).trim()}</div>
       <div class="press-content" name-index="${String(oneObject.id)}">
-        <a href="./${(oneObject.slug as string).trim()}/">
+        <a href="/press/${String(oneObject.id)}/${(oneObject.slug as string).trim()}/">
 
           ${divPreviewHTML.outerHTML}
           <div>
@@ -88,7 +88,10 @@ async function handlerButtonPressMore(event: MouseEvent): Promise<void> {
   /* GET BUTTOM 'Читать ещё' */
   const target = event.target as HTMLElement;
   if ((target.tagName.toLowerCase()).includes('a')) {
-    event.preventDefault();
+    // event.preventDefault();
+
+    const pathnameOfHref: string = (target as HTMLAnchorElement).pathname;
+    // document.location.replace()
     return;
   }
   if (!(target.tagName.toLowerCase()).includes('button')) {

@@ -57,6 +57,7 @@ export function FormsFC(): React.JSX.Element {
     };
 
   }, []);
+
   /**
   *  change the dom and get content
   * @returns Promise<void>
@@ -72,6 +73,7 @@ export function FormsFC(): React.JSX.Element {
     }
     setLoading(true);
   }
+
   /* ---- endUploadContent ----*/
   const form = (formname).includes('loginIn') ? <GoLoginInFC /> : (
     (formname).includes('changePass') ? <ChangePasswordFC /> : (
