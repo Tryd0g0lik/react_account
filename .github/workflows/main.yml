@@ -29,8 +29,12 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      # - name: Install dependencies
-      #   run: cd src/app/frontend && yarn run build:dev
+      - name: Cache clean
+        run: npm cache clean --force
+
+      - name: Remofe field
+        run: rm -rf node_modules package-lock.json
+
       - name: Install dependencies
         run: npm install --legacy-peer-deps
 
