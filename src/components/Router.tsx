@@ -7,12 +7,26 @@ import { GetFormRegistrationsFC } from './Forms/Registrations.tsx';
 import { fetchArticleData } from '@Services/articleData.ts';
 import { ArticlePageFC } from './ArticlePage/index.tsx';
 import { FormsFC } from './Forms/index.tsx';
+import { ChangePasswordFC } from './Forms/ChangePassword.tsx';
+import { GoLoginInFC } from './Forms/GoLoginIn.tsx';
 
 
 const router_ = createBrowserRouter([
   {
     path: '/',
     element: <FormsFC />
+  },
+  {
+    path: '/loginIn',
+    element: <GoLoginInFC />
+  },
+  {
+    path: '/signUp',
+    element: <GetFormRegistrationsFC />
+  },
+  {
+    path: '/change',
+    element: <ChangePasswordFC />
   },
   {
     path: '/article/:index/:slug', // Dynamic route for articles

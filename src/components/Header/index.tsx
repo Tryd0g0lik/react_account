@@ -6,7 +6,7 @@ export function GetTopMenu(): React.JSX.Element {
       <div className='topmenu'><a href='/'>Glagne</a></div>
       <div className='topmenu'><a href='/loginIn'>Login in</a></div>
       <div className='topmenu'><a href='/signUp'>Sign up</a></div>
-      <div className='topmenu'><a href='/signUp'>Change Password</a></div>
+      <div className='topmenu'><a href='/change'>Change Password</a></div>
     </nav>
   </header>);
 }
