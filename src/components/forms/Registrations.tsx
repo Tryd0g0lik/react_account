@@ -4,6 +4,7 @@
 import { GetTopMenu } from '@Components/Header';
 import { checkPathnameOfUrl } from '@Services/pathname';
 import React, { useEffect, useState } from 'react';
+import { handlerFormRegistrations } from './handlers/forGetFormRegistrations';
 
 export function GetFormRegistrationsFC(): React.JSX.Element {
   const [headerState, setHeaderState] = useState<React.JSX.Element>(<><div></div></>);
@@ -15,7 +16,7 @@ export function GetFormRegistrationsFC(): React.JSX.Element {
   }, []);
   return (<>
     {headerState}
-    <div className='regist'>
+    <div onKeyDown={handlerFormRegistrations} className='regist'>
       <form>
         {/* <label className="input input-bordered flex items-center gap-2">
           <input type="text" className="grow" placeholder="Search" />

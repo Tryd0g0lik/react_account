@@ -15,7 +15,7 @@ export function GoLoginInFC(): React.JSX.Element {
   useEffect(() => {
     const menu: React.JSX.Element = checkPathnameOfUrl() ? <GetTopMenu /> : <><div></div></> as React.JSX.Element;
     setHeaderState(menu);
-  }, [headerState]);
+  }, []);
   return (
     <>{headerState}
       <div onKeyDown={handlerFormLoginIn} className='regist'>
