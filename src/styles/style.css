@@ -48,31 +48,31 @@ label svg {
 }
 
 /* CONTENT */
-.press-content {
+.article-content {
 
   position: relative;
   max-width: 800px;
   padding-bottom: 50px;
 }
 
-.press-content>a {
+.article-content>a {
   display: block;
 }
 
-.press-content>a>div {
+.article-content>a>div {
   display: inline-block;
   vertical-align: text-top;
 }
 
-.press-content>a>div.press-more {
+.article-content>a>div.article-more {
   display: block;
 }
-.press-content div {
+.article-content div {
   max-width: 800px;
   overflow: hidden;
 }
 
-.press-content>div.press-more button {
+.article-content>div.article-more button {
   position: absolute;
   bottom: 10px;
   right: 0;

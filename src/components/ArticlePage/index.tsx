@@ -1,23 +1,23 @@
 import { GetTopMenu } from '@Components/Header';
-import { Press } from '@Interfaces';
+import { Article } from '@Interfaces';
 import React from 'react';
 import { useLoaderData } from 'react-router-dom';
 
-export function PressPageFC(): React.JSX.Element {
-  const data: Press = useLoaderData() as Press;
+export function ArticlePageFC(): React.JSX.Element {
+  const data: Article = useLoaderData() as Article;
 
   const image = (data.image === undefined || data.image === null) ? '' : String(data.image);
 
   return (<>
     <GetTopMenu />
     {data ? (
-      <div className='press'>
-        <div className='press-h'>
+      <div className='article'>
+        <div className='article-h'>
           <h1>{data.title}</h1>
         </div>
         <div>
-          <div className="press-content">
-            <div className="press-preview">
+          <div className="article-content">
+            <div className="article-preview">
               <img src={image} />
             </div>
             <div>
@@ -25,7 +25,7 @@ export function PressPageFC(): React.JSX.Element {
             </div>
             {/* ${divPreviewHTML.outerHTML} */}
 
-            <div data-author={data.author?.id as number} className="press-autor">
+            <div data-author={data.author?.id as number} className="article-autor">
               <div>Автор: {data.author?.username}</div>
               <div>Email: {data.author?.email}</div>
             </div>

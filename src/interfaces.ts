@@ -29,7 +29,7 @@ export interface FetchParams {
 }
 
 
-export interface Press {
+export interface Article {
   "id"?: number
   "author"?: {
     "id"?: number

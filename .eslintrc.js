@@ -68,7 +68,7 @@ module.exports = {
     }],
     "no-new": "off",
     "no-new-wrappers": "off",
-    "@typescript-eslint/strict-boolean-expressions": "off",
+    "@typescript-eslint/strict-boolean-exarticleions": "off",
     "@typescript-eslint/semi": "off",
     "semi": ["error", "always"],
     "@stylistic/semi": ["error", "always", { "omitLastInOneLineBlock": true }],
@@ -78,7 +78,7 @@ module.exports = {
     "react/display-name": "off",
     "indent": "off",
     "@typescript-eslint/indent": ["error", 2],
-    // '@stylistic/ts/indent': ['error', 2, { "ignoredNodes": ["ConditionalExpression"] }],
+    // '@stylistic/ts/indent': ['error', 2, { "ignoredNodes": ["ConditionalExarticleion"] }],
     "@typescript-eslint/no-explicit-any": ["error", { fixToUnknown: false, ignoreRestArgs: true }],
     "@typescript-eslint/no-var-requires": "off",
     // ключевое слово при импорте

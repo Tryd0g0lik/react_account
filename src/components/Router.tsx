@@ -4,8 +4,8 @@
 import React from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { GetFormRegistrationsFC } from './Forms/Registrations.tsx';
-import { fetchPressData } from '@Services/pressData.ts';
-import { PressPageFC } from './PressPage/index.tsx';
+import { fetchArticleData } from '@Services/articleData.ts';
+import { ArticlePageFC } from './ArticlePage/index.tsx';
 import { FormsFC } from './Forms/index.tsx';
 
 
@@ -15,9 +15,9 @@ const router_ = createBrowserRouter([
     element: <FormsFC />
   },
   {
-    path: '/press/:index/:slug', // Dynamic route for articles
-    element: <PressPageFC />,
-    // Regular expression to match specific patterns
+    path: '/article/:index/:slug', // Dynamic route for articles
+    element: <ArticlePageFC />,
+    // Regular exarticleion to match specific patterns
     loader: async ({ params }) => {
       const { index, slug } = await params;
       // Ensure both index and slug are present
@@ -26,14 +26,14 @@ const router_ = createBrowserRouter([
         throw new Response('Not Found', { status: 404 });
       }
 
-      const regex = /press\/[0-9]+\/[a-zA-Z0-9-]+\/$/; // Example regex for matching slugs
-      if (!regex.test(`press/${index}/${slug}/`)) {
+      const regex = /article\/[0-9]+\/[a-zA-Z0-9-]+\/$/; // Example regex for matching slugs
+      if (!regex.test(`article/${index}/${slug}/`)) {
         const responce = new Response('Not Found', { status: 404 });
         // eslint-disable-next-line @typescript-eslint/only-throw-error
         throw responce;
       }
       // Fetch article data based on slug if needed
-      const resp = await fetchPressData(index);
+      const resp = await fetchArticleData(index);
       return resp as object;
     },
   },

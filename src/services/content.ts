@@ -1,5 +1,5 @@
 import { get } from '@Services/fetches';
-import { Press } from '@Interfaces';
+import { Article } from '@Interfaces';
 import { checkCookieExists } from '@Services/cookieSessionId';
 const env_ = process.env.REACT_APP_CONTENT_READ_MORE_INTG_OF_ADD_SIMBOL;
 const REACT_APP_CONTENT_READ_MORE_INTG_OF_ADD_SIMBOL = (env_ === undefined) ? 100 : Number(env_);
@@ -16,24 +16,24 @@ export async function GetTotalContent(rootHtml: HTMLElement): Promise<void> {
     return;
   }
   const divHTML = document.createElement('div');
-  divHTML.className = 'press';
+  divHTML.className = 'article';
 
   const buttonHtml = document.createElement('button');
-  buttonHtml.className = 'press-button';
+  buttonHtml.className = 'article-button';
   buttonHtml.innerText = 'Добавить';
   divHTML.innerHTML = buttonHtml.outerHTML;
   rootHtml.insertAdjacentHTML('beforeend', divHTML.outerHTML);
 
   for (let i = 0; i < (responce as Array<object>).length; i++) {
-    const oneObject = (responce as Array<object>)[i] as Press;
+    const oneObject = (responce as Array<object>)[i] as Article;
 
-    divHTML.className = 'press-entry';
+    divHTML.className = 'article-entry';
     // index
     divHTML.setAttribute('data-index', String(oneObject.id));
     const divPreviewHTML = divHTML.cloneNode() as HTMLDivElement;
     divPreviewHTML.style.display = 'none';
     if ((oneObject).image !== null) {
-      divPreviewHTML.className = "press-preview";
+      divPreviewHTML.className = "article-preview";
       // Image
       divPreviewHTML.style.backgroundImage = `url(${(oneObject).image as string})`;
       divPreviewHTML.style.display = "inline-block";
@@ -46,45 +46,45 @@ export async function GetTotalContent(rootHtml: HTMLElement): Promise<void> {
     buttonHtml.setAttribute('data-index', String(oneObject.id));
     // title, slug, content
     divHTML.innerHTML = `<div>
-      <div class='press-h'>${(oneObject.title as string).trim()}</div>
-      <div class="press-content" data-index="${String(oneObject.id)}">
-        <a href="/press/${String(oneObject.id)}/${(oneObject.slug as string).trim()}/">
+      <div class='article-h'>${(oneObject.title as string).trim()}</div>
+      <div class="article-content" data-index="${String(oneObject.id)}">
+        <a href="/article/${String(oneObject.id)}/${(oneObject.slug as string).trim()}/">
 
           ${divPreviewHTML.outerHTML}
           <div>
             ${(oneObject.content as string).slice(0, 150)}...
           </div>
         </a>
-        <div class="press-more">
+        <div class="article-more">
           ${buttonHtml.outerHTML}
         </div>
 
       </div>
     </div>`;
 
-    /* get div.className 'press' */
-    const pressHtml = document.querySelector('.press');
-    if (pressHtml === null) {
+    /* get div.className 'article' */
+    const articleHtml = document.querySelector('.article');
+    if (articleHtml === null) {
       throw new Error("[Error => handlerFormLoginIn]: What is wrong. Does bot work!");
     }
-    pressHtml.insertAdjacentHTML('beforeend', divHTML.outerHTML);
+    articleHtml.insertAdjacentHTML('beforeend', divHTML.outerHTML);
   }
-  /* get div.className 'press' */
-  const pressHtmlTotal = document.querySelector('.press');
-  if (pressHtmlTotal === null) {
+  /* get div.className 'article' */
+  const articleHtmlTotal = document.querySelector('.article');
+  if (articleHtmlTotal === null) {
     throw new Error("[Error => handlerFormLoginIn]: What is wrong. Does bot work!");
   }
   /* ADD a total the event listener  */
-  (pressHtmlTotal as HTMLDivElement).removeEventListener('click', handlerButtonPressMore);
-  (pressHtmlTotal as HTMLDivElement).addEventListener('click', handlerButtonPressMore);
+  (articleHtmlTotal as HTMLDivElement).removeEventListener('click', handlerButtonArticleMore);
+  (articleHtmlTotal as HTMLDivElement).addEventListener('click', handlerButtonArticleMore);
 }
 
 /**
- * This function is an handler for the event to press by button 'Читать ещё'
+ * This function is an handler for the event to article by button 'Читать ещё'
  * @param event MouseEvent the click.
  * @returns  Promise<void>
  */
-async function handlerButtonPressMore(event: MouseEvent): Promise<void> {
+async function handlerButtonArticleMore(event: MouseEvent): Promise<void> {
   /* GET BUTTOM 'Читать ещё' */
   const target = event.target as HTMLElement;
   if ((target.tagName.toLowerCase()).includes('a')) {
@@ -118,9 +118,9 @@ async function handlerButtonPressMore(event: MouseEvent): Promise<void> {
 
 
   /* GET OLD COMTENT of single position */
-  const singleContentHtml = document.querySelector(`.press-content[data-index="${getAttributeIndex}"] > a div:last-of-type`);
+  const singleContentHtml = document.querySelector(`.article-content[data-index="${getAttributeIndex}"] > a div:last-of-type`);
   if (singleContentHtml === null) {
-    throw new Error("[Error => handlerButtonPressMore]: What is wrong. Does bot work!");
+    throw new Error("[Error => handlerButtonArticleMore]: What is wrong. Does bot work!");
   }
 
 
@@ -130,15 +130,15 @@ async function handlerButtonPressMore(event: MouseEvent): Promise<void> {
   if (keysList.length < 5) {
     return;
   }
-  const oneContentLengthFull = ((responce as Press).content as string).length;
+  const oneContentLengthFull = ((responce as Article).content as string).length;
   if (oldContentLength + REACT_APP_CONTENT_READ_MORE_INTG_OF_ADD_SIMBOL === oneContentLengthFull) {
     (singleContentHtml as HTMLDivElement).innerText =
-      ((responce as Press).content as string).slice(0, oldContentLength + REACT_APP_CONTENT_READ_MORE_INTG_OF_ADD_SIMBOL);
+      ((responce as Article).content as string).slice(0, oldContentLength + REACT_APP_CONTENT_READ_MORE_INTG_OF_ADD_SIMBOL);
 
   }
   else {
     (singleContentHtml as HTMLDivElement).innerText =
-      ((responce as Press).content as string).slice(0, oldContentLength + REACT_APP_CONTENT_READ_MORE_INTG_OF_ADD_SIMBOL) + '...';
+      ((responce as Article).content as string).slice(0, oldContentLength + REACT_APP_CONTENT_READ_MORE_INTG_OF_ADD_SIMBOL) + '...';
   }
 
 }
