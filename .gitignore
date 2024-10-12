@@ -1,6 +1,4 @@
 # project
-.env
-!.env.example
 archive
 dist
 node_modules
